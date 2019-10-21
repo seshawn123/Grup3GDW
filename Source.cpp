@@ -238,6 +238,7 @@ int main()
 						{
 							if (row3[i] == 'X')
 							{
+								player1win = 1;
 								check = 1;
 							}
 						}
@@ -264,6 +265,7 @@ int main()
 						{
 							if (row1[i] == 'X')
 							{
+								player1win = 1;
 								check = 1;
 							}
 						}
@@ -276,26 +278,32 @@ int main()
 			{
 				if ((row1[i] == 'X') && (row1[i + 1] == 'X') && (row1[i + 2] == 'X') && (row1[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 				if ((row2[i] == 'X') && (row2[i + 1] == 'X') && (row2[i + 2] == 'X') && (row2[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 				if ((row3[i] == 'X') && (row3[i + 1] == 'X') && (row3[i + 2] == 'X') && (row3[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 				if ((row4[i] == 'X') && (row4[i + 1] == 'X') && (row4[i + 2] == 'X') && (row4[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 				if ((row5[i] == 'X') && (row5[i + 1] == 'X') && (row5[i + 2] == 'X') && (row5[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 				if ((row6[i] == 'X') && (row6[i + 1] == 'X') && (row6[i + 2] == 'X') && (row6[i + 3] == 'X'))
 				{
+					player1win = 1;
 					check = 1;
 				}
 			}
@@ -303,35 +311,41 @@ int main()
 			//Diagonal
 			for (int j = 0; j < 4; j++) {
 				if ((row6[j] == 'X') && (row5[j + 1] == 'X') && (row4[j + 2] == 'X') && (row3[j + 3] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 				if ((row5[j] == 'X') && (row4[j + 1] == 'X') && (row3[j + 2] == 'X') && (row2[j + 3] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 				if ((row4[j] == 'X') && (row3[j + 1] == 'X') && (row2[j + 2] == 'X') && (row1[j + 3] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 				if ((row6[j + 3] == 'X') && (row5[j + 2] == 'X') && (row4[j + 1] == 'X') && (row3[j] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 				if ((row5[j + 3] == 'X') && (row4[j + 2] == 'X') && (row3[j + 1] == 'X') && (row2[j] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 				if ((row4[j + 3] == 'X') && (row3[j + 2] == 'X') && (row2[j + 1] == 'X') && (row1[j] == 'X')) {
+					player1win = 1;
 					check = 1;
 				}
 
 			}
 
 			//Tie Sequence
-			if (gameEnd == false)
+			if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
 			{
-				if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
-				{
-					check = 1;
-				}
+				tie = 1;
+				check = 1;
 			}
 
+			//Tie Sequence
+			
 		}
 		system("CLS");
 
@@ -508,32 +522,36 @@ int main()
 			}
 
 			//Tie Sequence
-			if (gameEnd == false)
+			if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
 			{
-				if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
-				{
-					check = 1;
-				}
+				tie = 1;
+				check = 1;
 			}
 
 			//Diagonal
 			for (int j = 0; j < 4; j++) {
 				if ((row6[j] == 'N') && (row5[j + 1] == 'N') && (row4[j + 2] == 'N') && (row3[j + 3] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 				if ((row5[j] == 'N') && (row4[j + 1] == 'N') && (row3[j + 2] == 'N') && (row2[j + 3] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 				if ((row4[j] == 'N') && (row3[j + 1] == 'N') && (row2[j + 2] == 'N') && (row1[j + 3] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 				if ((row6[j + 3] == 'N') && (row5[j + 2] == 'N') && (row4[j + 1] == 'N') && (row3[j] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 				if ((row5[j + 3] == 'N') && (row4[j + 2] == 'N') && (row3[j + 1] == 'N') && (row2[j] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 				if ((row4[j + 3] == 'N') && (row3[j + 2] == 'N') && (row2[j + 1] == 'N') && (row1[j] == 'N')) {
+					player2win = 1;
 					check = 1;
 				}
 
@@ -545,7 +563,20 @@ int main()
 		if (check == 1)
 		{
 			outputBoard();
-			cout << "Play Again?....\nY for Yes, N for No: ";
+			if (player1win == 1)
+			{
+				cout << "Player 1 wins";
+			}
+			else if (player2win == 1)
+			{
+				cout << "Player 2 wins";
+			}
+			else if (tie == 1);
+			{
+				cout << "It's a tie";
+			}
+
+			cout << ", play Again?....\nY for Yes, N for No: ";
 			cin >> playagain;
 			if (playagain == 'N')
 			{
