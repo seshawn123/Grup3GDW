@@ -353,6 +353,27 @@ while (gameEnd == false)
 		}
 
 		//Diagonal
+		for (int j = 0; j < 4; j++) {
+                    if ((row6[j] == 'X') && (row5[j + 1] == 'X') && (row4[j + 2] == 'X') && (row3[j + 3] == 'X')) {
+                            check = 1;
+                    }
+                    if ((row5[j] == 'X') && (row4[j + 1] == 'X') && (row3[j + 2] == 'X') && (row2[j + 3] == 'X')) {
+                        check = 1;
+                    }
+                    if ((row4[j] == 'X') && (row3[j + 1] == 'X') && (row2[j + 2] == 'X') && (row1[j + 3] == 'X')) {
+                        check = 1;
+                    }
+                    if ((row6[j + 3] == 'X') && (row5[j + 2] == 'X') && (row4[j + 1] == 'X') && (row3[j] == 'X')) {
+                        check = 1;
+                    }
+                    if ((row5[j + 3] == 'X') && (row4[j + 2] == 'X') && (row3[j + 1] == 'X') && (row2[j] == 'X')) {
+                        check = 1;
+                    }
+                    if ((row4[j + 3] == 'X') && (row3[j + 2] == 'X') && (row2[j + 1] == 'X') && (row1[j] == 'X')) {
+                        check = 1;
+                    }
+
+                }
 
 	}
 
@@ -613,6 +634,27 @@ while (gameEnd == false)
 			}
 		}
 	}
+	for (int j = 0; j < 4; j++) {
+                    if ((row6[j] == 'N') && (row5[j + 1] == 'N') && (row4[j + 2] == 'N') && (row3[j + 3] == 'N')) {
+                            check = 1;
+                    }
+                    if ((row5[j] == 'N') && (row4[j + 1] == 'N') && (row3[j + 2] == 'N') && (row2[j + 3] == 'N')) {
+                        check = 1;
+                    }
+                    if ((row4[j] == 'N') && (row3[j + 1] == 'N') && (row2[j + 2] == 'N') && (row1[j + 3] == 'N')) {
+                        check = 1;
+                    }
+                    if ((row6[j + 3] == 'N') && (row5[j + 2] == 'N') && (row4[j + 1] == 'N') && (row3[j] == 'N')) {
+                        check = 1;
+                    }
+                    if ((row5[j + 3] == 'N') && (row4[j + 2] == 'N') && (row3[j + 1] == 'N') && (row2[j] == 'N')) {
+                        check = 1;
+                    }
+                    if ((row4[j + 3] == 'N') && (row3[j + 2] == 'N') && (row2[j + 1] == 'N') && (row1[j] == 'N')) {
+                        check = 1;
+                    }
+
+                }
 
 	//Tie Sequence
 	if (gameEnd == false)
