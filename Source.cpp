@@ -50,29 +50,29 @@ int menu()
 
 int instruction()
 {
-	
-	
-char back;
-	cout << "Enter input: Start.\nPlayer 1 and two are prompt in order to input the line corresponding to the row the Player wants to put their piece in.\n";
-	cout << "Input Back to go back to the main menu.\n";
-	cin >> back;
-	switch (back)
+	while (1)
 	{
-	case 'b':
-	case 'B':
-		//cout << "yes";
-		cin.ignore(1000, '\n');
+		char back;
+		cout << "Enter input: Start.\nPlayer 1 and two are prompt in order to input the line corresponding to the row the Player wants to put their piece in.\n";
+		cout << "Input Back to go back to the main menu.\n";
+		cin >> back;
+		switch (back)
+		{
+		case 'b':
+		case 'B':
+			//cout << "yes";
+			cin.ignore(1000, '\n');
+			system("cls");
+			return 1;
+		default:
+			cout << "Please enter Exit\n";
+			cin.ignore(1000, '\n');
+			system("cls");
+
+		}
 		system("cls");
-		return 1;
-	default:
-		cout << "Please enter Exit\n";
-		cin.ignore(1000, '\n');
-		system("cls");
-		
 	}
 	
-	
-	system("cls");
 }
 
 
@@ -81,11 +81,12 @@ int main()
 	while (1)
 	{
 		int choice = menu();
+		
 		switch (choice)
 		{
 		case 1:
 			break;
-		case 2:
+		case 2:			
 			instruction();
 			break;
 		case 3:
