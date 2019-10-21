@@ -146,6 +146,11 @@ int main()
 			outputBoard();
 			cout << "Player 1\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;}
 
 			for (int i = 0; i <= 7; i++)
 			{
@@ -335,6 +340,11 @@ int main()
 			outputBoard();
 			cout << "Player 2\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;}
 
 
 
