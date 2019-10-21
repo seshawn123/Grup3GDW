@@ -4,16 +4,63 @@
 #include <conio.h>
 #include <iostream>;
 //#include "Source.h"
-//#include <conio.h>
 #include <windows.h>
-
 
 using namespace std;
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
+int menu()
+{
+	while (1)
+	{
+		char response;
+		cout << "Connect 4\n";
+		cout << "Start\n";
+		cout << "Instructions \n";
+		cin >> response;
+		switch (response) 
+		{
+		case 's':
+		case 'S':
+			//cout << "yes";
+			cin.ignore(1000, '\n');
+			system("cls");
+			return 1;
+		case 'i':
+		case 'I':
+			cin.ignore(1000, '\n');
+			system("cls");
+			return 2;
+		default:
+			cout << "Please enter either Start, Instructions, or Exit\n";
+			cin.ignore(1000, '\n');
+			system("cls");
+			continue;
+		}
+	}
+}
+
+
 int main()
 {
+	while (1)
+	{
+		int choice = menu();
+		switch (choice)
+		{
+		case 1:
+			break;
+		case 2:
+			//intructions function
+			break;
+		}
+		if (choice == 1)
+		{
+			break;
+		}
+	} 
+
 	bool gameEnd = false;
 	bool gameEndc = false;
 	bool player1 = true;
@@ -709,3 +756,4 @@ int main()
 
 }
 
+	
