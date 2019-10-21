@@ -15,9 +15,11 @@ int menu()
 	while (1)
 	{
 		char response;
-		cout << "Connect 4\n";
+		cout << "Connect 4\n\n";
 		cout << "Start\n";
 		cout << "Instructions \n";
+		cout << "Exit\n\n";
+		cout << "Please enter your input as seen above\n";
 		cin >> response;
 		switch (response) 
 		{
@@ -32,6 +34,11 @@ int menu()
 			cin.ignore(1000, '\n');
 			system("cls");
 			return 2;
+		case 'e':
+		case 'E':
+			cin.ignore(1000, '\n');
+			system("cls");
+			return 3;
 		default:
 			cout << "Please enter either Start, Instructions, or Exit\n";
 			cin.ignore(1000, '\n');
@@ -39,6 +46,33 @@ int menu()
 			continue;
 		}
 	}
+}
+
+int instruction()
+{
+	
+	
+char back;
+	cout << "Enter input: Start.\nPlayer 1 and two are prompt in order to input the line corresponding to the row the Player wants to put their piece in.\n";
+	cout << "Input Back to go back to the main menu.\n";
+	cin >> back;
+	switch (back)
+	{
+	case 'b':
+	case 'B':
+		//cout << "yes";
+		cin.ignore(1000, '\n');
+		system("cls");
+		return 1;
+	default:
+		cout << "Please enter Exit\n";
+		cin.ignore(1000, '\n');
+		system("cls");
+		
+	}
+	
+	
+	system("cls");
 }
 
 
@@ -52,13 +86,19 @@ int main()
 		case 1:
 			break;
 		case 2:
-			//intructions function
+			instruction();
+			break;
+		case 3:
+			//exit program function or something
+			return 0;
 			break;
 		}
 		if (choice == 1)
 		{
 			break;
 		}
+		else
+			continue;
 	} 
 
 	bool gameEnd = false;
