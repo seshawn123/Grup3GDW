@@ -17,7 +17,6 @@ int menu()
 	{
 		char response;
 		//cout << "Connect 4\n\n";
-
 		SetConsoleTextAttribute(console, 4);
 		cout << " _____                                     _       ___ " << "\n"
 			"/  __ \\                                   | |     /   |   _" << "\n"
@@ -148,6 +147,12 @@ int main()
 			outputBoard();
 			cout << "Player 1\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;
+			}
 
 			for (int i = 0; i <= 7; i++)
 			{
@@ -337,6 +342,12 @@ int main()
 			outputBoard();
 			cout << "Player 2\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;
+			}
 
 
 
@@ -575,12 +586,12 @@ string outputBoard()
 {
 	//Output
 		//Num Col
-	cout << "   1   2   3   4   5   6   7" << endl;
-	cout << " -----------------------------" << endl;
+	cout << " 1 2 3 4 5 6 7" << endl;
+	cout << "---------------" << endl;
 	//Row 1
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row1[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -592,11 +603,11 @@ string outputBoard()
 		cout << row1[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
+	cout << "|" << endl;
 	//Row 2
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row2[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -608,11 +619,11 @@ string outputBoard()
 		cout << row2[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
+	cout << "|" << endl;
 	//Row 3
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row3[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -624,11 +635,11 @@ string outputBoard()
 		cout << row3[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
+	cout << "|" << endl;
 	//Row 4
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row4[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -640,11 +651,11 @@ string outputBoard()
 		cout << row4[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
+	cout << "|" << endl;
 	//Row 5
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row5[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -656,11 +667,11 @@ string outputBoard()
 		cout << row5[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
+	cout << "|" << endl;
 	//Row 6
 	for (int i = 0; i < 7; i++)
 	{
-		cout << " | ";
+		cout << "|";
 		if (row6[i] == 'X')
 		{
 			SetConsoleTextAttribute(console, 4);
@@ -672,7 +683,7 @@ string outputBoard()
 		cout << row6[i];
 		SetConsoleTextAttribute(console, 15);
 	}
-	cout << " | " << endl;
-	cout << " -----------------------------" << endl;
+	cout << "|" << endl;
+	cout << "---------------" << endl;
 	return("");
 }
