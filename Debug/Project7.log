@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\cydne\source\repos\project7\project7\source.cpp(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\cydne\source\repos\project7\project7\source.cpp(22): warning C4101: 'tie': unreferenced local variable
+  Project7.vcxproj -> C:\Users\cydne\source\repos\Project7\Debug\Project7.exe
