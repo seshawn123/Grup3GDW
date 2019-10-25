@@ -1,12 +1,13 @@
-//
-//
-//
-#include <conio.h>
-#include <iostream>;
+
+#include <iostream>
 //#include "Source.h"
+#include <conio.h>
 #include <windows.h>
 
+char row1[7], row2[7], row3[7], row4[7], row5[7], row6[7];
+
 using namespace std;
+string outputBoard();
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -15,13 +16,20 @@ int menu()
 	while (1)
 	{
 		char response;
-		cout << "Connect 4\n\n";
-		cout << "Start\n";
-		cout << "Instructions \n";
-		cout << "Exit\n\n";
-		cout << "Please enter your input as seen above\n";
+		//cout << "Connect 4\n\n";
+		SetConsoleTextAttribute(console, 4);
+		cout << " _____                                     _       ___ " << "\n"
+			"/  __ \\                                   | |     /   |   _" << "\n"
+			"| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
+			"| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
+			"| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
+			" \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n";
+		SetConsoleTextAttribute(console, 15);
+
+		
+		cout << "Please enter\nS to Start\nI for Instructions\nE to exit";
 		cin >> response;
-		switch (response) 
+		switch (response)
 		{
 		case 's':
 		case 'S':
@@ -72,7 +80,7 @@ int instruction()
 		}
 		system("cls");
 	}
-	
+
 }
 
 
@@ -81,12 +89,12 @@ int main()
 	while (1)
 	{
 		int choice = menu();
-		
+
 		switch (choice)
 		{
 		case 1:
 			break;
-		case 2:			
+		case 2:
 			instruction();
 			break;
 		case 3:
@@ -100,20 +108,13 @@ int main()
 		}
 		else
 			continue;
-	} 
-
+	}
 	bool gameEnd = false;
 	bool gameEndc = false;
 	bool player1 = true;
 	bool player2 = false;
-	int move1, check, tie;
+	int move1, check, tie, player2win, player1win;
 	char playagain;
-	char row1[7];
-	char row2[7];
-	char row3[7];
-	char row4[7];
-	char row5[7];
-	char row6[7];
 
 	//Row 1
 	for (int i = 0; i < 7; i++)
@@ -134,53 +135,6 @@ int main()
 	for (int i = 0; i < 7; i++)
 		row6[i] = 'O';
 
-	//Output
-	//Num Col
-	cout << " 1 2 3 4 5 6 7" << endl;
-	cout << "---------------" << endl;
-	//Row 1
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row1[i];
-	}
-	cout << "|" << endl;
-	//Row 2
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row2[i];
-	}
-	cout << "|" << endl;
-	//Row 3
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row3[i];
-	}
-	cout << "|" << endl;
-	//Row 4
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row4[i];
-	}
-	cout << "|" << endl;
-	//Row 5
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row5[i];
-	}
-	cout << "|" << endl;
-	//Row 6
-	for (int i = 0; i < 7; i++)
-	{
-		cout << "|";
-		cout << row6[i];
-	}
-	cout << "|" << endl;
-	cout << "---------------" << endl;
 
 	while (gameEnd == false)
 	{
@@ -188,8 +142,15 @@ int main()
 		//Player 1
 		if (gameEnd == false && player1 == true)
 		{
+			outputBoard();
 			cout << "Player 1\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;
+			}
 
 			for (int i = 0; i <= 7; i++)
 			{
@@ -255,111 +216,7 @@ int main()
 						}
 					}
 				}
-				system("cls");
 			}
-
-			//Output
-			//Num Col
-			cout << " 1 2 3 4 5 6 7" << endl;
-			cout << "---------------" << endl;
-			//Row 1
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row1[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row1[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row1[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 2
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row2[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row2[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row2[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 3
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row3[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row3[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row3[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 4
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row4[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row4[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row4[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 5
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row5[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row5[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row5[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 6
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row6[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row6[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row6[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			cout << "---------------" << endl;
-
 		}
 
 		//Win Sequence
@@ -442,14 +299,55 @@ int main()
 			}
 
 			//Diagonal
+			for (int j = 0; j < 4; j++) {
+				if ((row6[j] == 'X') && (row5[j + 1] == 'X') && (row4[j + 2] == 'X') && (row3[j + 3] == 'X')) {
+					check = 1;
+				}
+				if ((row5[j] == 'X') && (row4[j + 1] == 'X') && (row3[j + 2] == 'X') && (row2[j + 3] == 'X')) {
+					check = 1;
+				}
+				if ((row4[j] == 'X') && (row3[j + 1] == 'X') && (row2[j + 2] == 'X') && (row1[j + 3] == 'X')) {
+					check = 1;
+				}
+				if ((row6[j + 3] == 'X') && (row5[j + 2] == 'X') && (row4[j + 1] == 'X') && (row3[j] == 'X')) {
+					check = 1;
+				}
+				if ((row5[j + 3] == 'X') && (row4[j + 2] == 'X') && (row3[j + 1] == 'X') && (row2[j] == 'X')) {
+					check = 1;
+				}
+				if ((row4[j + 3] == 'X') && (row3[j + 2] == 'X') && (row2[j + 1] == 'X') && (row1[j] == 'X')) {
+					check = 1;
+				}
+
+			}
+
+			//Tie Sequence
+			if (gameEnd == false)
+			{
+				if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
+				{
+					check = 1;
+				}
+			}
 
 		}
+		system("CLS");
+
 
 		//Player 2
 		if (gameEnd == false && player2 == true && check != 1)
 		{
+			outputBoard();
 			cout << "Player 2\nChoose a Column: ";
 			cin >> move1;
+			while (cin.fail()) {
+				cout << "Please enter a valid input: ";
+				cin.clear();
+				cin.ignore(256, '\n');
+				cin >> move1;
+			}
+
+
 
 			for (int i = 0; i <= 7; i++)
 			{
@@ -515,115 +413,11 @@ int main()
 						}
 					}
 				}
-				system("cls");
+
 
 			}
-
-			//Output
-			//Num Col
-			cout << " 1 2 3 4 5 6 7" << endl;
-			cout << "---------------" << endl;
-			//Row 1
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row1[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row1[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row1[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 2
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row2[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row2[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row2[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 3
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row3[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row3[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row3[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 4
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row4[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row4[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row4[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 5
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row5[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row5[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row5[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-			cout << "|" << endl;
-			//Row 6
-			for (int i = 0; i < 7; i++)
-			{
-				cout << "|";
-				if (row6[i] == 'X')
-				{
-					SetConsoleTextAttribute(console, 4);
-				}
-				if (row6[i] == 'N')
-				{
-					SetConsoleTextAttribute(console, 1);
-				}
-				cout << row6[i];
-				SetConsoleTextAttribute(console, 15);
-			}
-
-			cout << "|" << endl;
-			cout << "---------------" << endl;
 
 		}
-
 
 		//Win Sequence
 		if (gameEnd == false)
@@ -641,6 +435,7 @@ int main()
 							if (row3[i] == 'N')
 							{
 								check = 1;
+								player2win = 1;
 							}
 						}
 					}
@@ -654,6 +449,7 @@ int main()
 							if (row2[i] == 'N')
 							{
 								check = 1;
+								player2win = 1;
 							}
 						}
 					}
@@ -667,6 +463,7 @@ int main()
 							if (row1[i] == 'N')
 							{
 								check = 1;
+								player2win = 1;
 							}
 						}
 					}
@@ -679,39 +476,73 @@ int main()
 				if ((row1[i] == 'N') && (row1[i + 1] == 'N') && (row1[i + 2] == 'N') && (row1[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 				if ((row2[i] == 'N') && (row2[i + 1] == 'N') && (row2[i + 2] == 'N') && (row2[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 				if ((row3[i] == 'N') && (row3[i + 1] == 'N') && (row3[i + 2] == 'N') && (row3[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 				if ((row4[i] == 'N') && (row4[i + 1] == 'N') && (row4[i + 2] == 'N') && (row4[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 				if ((row5[i] == 'N') && (row5[i + 1] == 'N') && (row5[i + 2] == 'N') && (row5[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 				if ((row6[i] == 'N') && (row6[i + 1] == 'N') && (row6[i + 2] == 'N') && (row6[i + 3] == 'N'))
 				{
 					check = 1;
+					player2win = 1;
 				}
 			}
-		}
 
-		//Tie Sequence
-		if (gameEnd == false)
-		{
-			cout<<("Tie");
+			//Tie Sequence
+			if (gameEnd == false)
+			{
+				if (((row1[1] == 'X') || (row1[1] == 'N')) && ((row1[2] == 'X') || (row1[2] == 'N')) && ((row1[3] == 'X') || (row1[3] == 'N')) && ((row1[4] == 'X') || (row1[4] == 'N')) && ((row1[5] == 'X') || (row1[5] == 'N')) && ((row1[6] == 'X') || (row1[6] == 'N')))
+				{
+					check = 1;
+				}
+			}
+
+			//Diagonal
+			for (int j = 0; j < 4; j++) {
+				if ((row6[j] == 'N') && (row5[j + 1] == 'N') && (row4[j + 2] == 'N') && (row3[j + 3] == 'N')) {
+					check = 1;
+				}
+				if ((row5[j] == 'N') && (row4[j + 1] == 'N') && (row3[j + 2] == 'N') && (row2[j + 3] == 'N')) {
+					check = 1;
+				}
+				if ((row4[j] == 'N') && (row3[j + 1] == 'N') && (row2[j + 2] == 'N') && (row1[j + 3] == 'N')) {
+					check = 1;
+				}
+				if ((row6[j + 3] == 'N') && (row5[j + 2] == 'N') && (row4[j + 1] == 'N') && (row3[j] == 'N')) {
+					check = 1;
+				}
+				if ((row5[j + 3] == 'N') && (row4[j + 2] == 'N') && (row3[j + 1] == 'N') && (row2[j] == 'N')) {
+					check = 1;
+				}
+				if ((row4[j + 3] == 'N') && (row3[j + 2] == 'N') && (row2[j + 1] == 'N') && (row1[j] == 'N')) {
+					check = 1;
+				}
+
+			}
 		}
+		system("CLS");
 
 		//Reset Game
 		if (check == 1)
 		{
+			outputBoard();
 			cout << "Play Again?....\nY for Yes, N for No: ";
 			cin >> playagain;
 			if (playagain == 'N')
@@ -720,6 +551,7 @@ int main()
 			}
 			else if (playagain == 'Y')
 			{
+				system("CLS");
 				//Row 1
 				for (int i = 0; i < 7; i++)
 					row1[i] = 'O';
@@ -739,53 +571,6 @@ int main()
 				for (int i = 0; i < 7; i++)
 					row6[i] = 'O';
 
-				//Output
-		//Num Col
-				cout << " 1 2 3 4 5 6 7" << endl;
-				cout << "---------------" << endl;
-				//Row 1
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row1[i];
-				}
-				cout << "|" << endl;
-				//Row 2
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row2[i];
-				}
-				cout << "|" << endl;
-				//Row 3
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row3[i];
-				}
-				cout << "|" << endl;
-				//Row 4
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row4[i];
-				}
-				cout << "|" << endl;
-				//Row 5
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row5[i];
-				}
-				cout << "|" << endl;
-				//Row 6
-				for (int i = 0; i < 7; i++)
-				{
-					cout << "|";
-					cout << row6[i];
-				}
-				cout << "|" << endl;
-				cout << "---------------" << endl;
 
 				gameEndc = false;
 			}
@@ -793,8 +578,110 @@ int main()
 
 	}
 
-
-
 }
 
-	
+string outputBoard()
+{
+	//Output
+		//Num Col
+	cout << " 1 2 3 4 5 6 7" << endl;
+	cout << "---------------" << endl;
+	//Row 1
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row1[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row1[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row1[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	//Row 2
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row2[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row2[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row2[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	//Row 3
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row3[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row3[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row3[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	//Row 4
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row4[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row4[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row4[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	//Row 5
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row5[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row5[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row5[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	//Row 6
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "|";
+		if (row6[i] == 'X')
+		{
+			SetConsoleTextAttribute(console, 4);
+		}
+		if (row6[i] == 'N')
+		{
+			SetConsoleTextAttribute(console, 1);
+		}
+		cout << row6[i];
+		SetConsoleTextAttribute(console, 15);
+	}
+	cout << "|" << endl;
+	cout << "---------------" << endl;
+	return("");
+}
