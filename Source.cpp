@@ -3,7 +3,7 @@
 //#include "Source.h"
 #include <conio.h>
 #include <windows.h>
-
+bool multiplayer;
 char row1[7], row2[7], row3[7], row4[7], row5[7], row6[7];
 
 using namespace std;
@@ -18,18 +18,18 @@ int menu()
 		char response;
 		//cout << "Connect 4\n\n";
 		SetConsoleTextAttribute(console, 4);
-		cout << " _____                                     _       ___ " << "\n"
-			"/  __ \\                                   | |     /   |   _" << "\n"
-			"| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
-			"| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
-			"| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
-			" \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n";
+		cout <<"\t\t\t _____                                     _       ___ " << "\n"
+			   "\t\t\t/  __ \\                                   | |     /   |   _" << "\n"
+			   "\t\t\t| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
+			   "\t\t\t| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
+			   "\t\t\t| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
+			   "\t\t\t \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n\n";
 		SetConsoleTextAttribute(console, 15);
 
-		cout << "Start\n";
-		cout << "Instructions \n";
-		cout << "Exit\n\n";
-		cout << "Please enter your input as seen above\n";
+		cout << "\t\t\t\tStart\n";
+		cout << "\t\t\t\tInstructions \n";
+		cout << "\t\t\t\tExit\n\n";
+		cout << "\t\t\t\t\tPlease enter your input as seen above\n";
 		cin >> response;
 		switch (response)
 		{
@@ -106,6 +106,15 @@ int main()
 		}
 		if (choice == 1)
 		{
+			int x;
+			cout << "Would like to player singleplayer(1) or multiplayer(2) \n";
+			cin >> x;
+			if (x == 1) {
+				multiplayer = false;
+			}
+			if (x == 2) {
+				multiplayer = true;
+			}
 			break;
 		}
 		else
@@ -117,6 +126,9 @@ int main()
 	bool player2 = false;
 	int move1, check, tie, player2win, player1win;
 	char playagain;
+	player1win = 0;
+	player2win = 0;
+	tie = 0;
 
 	//Row 1
 	for (int i = 0; i < 7; i++)
@@ -345,7 +357,7 @@ int main()
 			}
 
 			//Tie Sequence
-			
+
 		}
 		system("CLS");
 
@@ -355,7 +367,8 @@ int main()
 		{
 			outputBoard();
 			cout << "Player 2\nChoose a Column: ";
-			cin >> move1;
+			if (multiplayer == true) { cin >> move1; }
+			if (multiplayer == false) { move1 = rand() % 7 + 1; }
 			while (cin.fail()) {
 				cout << "Please enter a valid input: ";
 				cin.clear();
@@ -571,18 +584,17 @@ int main()
 			{
 				cout << "Player 2 wins";
 			}
-			else if (tie == 1);
+			else if (tie == 1)
 			{
 				cout << "It's a tie";
 			}
-
 			cout << ", play Again?....\nY for Yes, N for No: ";
 			cin >> playagain;
-			if (playagain == 'N')
+			if ((playagain == 'N') || (playagain == 'n'))
 			{
 				gameEnd = true;
 			}
-			else if (playagain == 'Y')
+			else if ((playagain == 'Y') || (playagain == 'y'))
 			{
 				system("CLS");
 				//Row 1
@@ -629,7 +641,7 @@ string outputBoard()
 		}
 		if (row1[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row1[i];
 		SetConsoleTextAttribute(console, 15);
@@ -645,7 +657,7 @@ string outputBoard()
 		}
 		if (row2[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row2[i];
 		SetConsoleTextAttribute(console, 15);
@@ -661,7 +673,7 @@ string outputBoard()
 		}
 		if (row3[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row3[i];
 		SetConsoleTextAttribute(console, 15);
@@ -677,7 +689,7 @@ string outputBoard()
 		}
 		if (row4[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row4[i];
 		SetConsoleTextAttribute(console, 15);
@@ -693,7 +705,7 @@ string outputBoard()
 		}
 		if (row5[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row5[i];
 		SetConsoleTextAttribute(console, 15);
@@ -709,7 +721,7 @@ string outputBoard()
 		}
 		if (row6[i] == 'N')
 		{
-			SetConsoleTextAttribute(console, 1);
+			SetConsoleTextAttribute(console, 3);
 		}
 		cout << row6[i];
 		SetConsoleTextAttribute(console, 15);
