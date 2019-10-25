@@ -49,9 +49,9 @@ int menu()
 			system("cls");
 			return 3;
 		default:
-			cout << "Please enter either Start, Instructions, or Exit\n";
 			cin.ignore(1000, '\n');
 			system("cls");
+			cout << "\t\t\t Invalid input! Please enter either Start, Instructions, or Exit\n";
 			continue;
 		}
 	}
