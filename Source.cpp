@@ -6,6 +6,13 @@
 bool multiplayer;
 char row1[7], row2[7], row3[7], row4[7], row5[7], row6[7];
 
+bool gameEnd = false;
+bool gameEndc = false;
+bool player1 = true;
+bool player2 = false;
+int move1, check, tie, player2win, player1win;
+char playagain;
+
 using namespace std;
 string outputBoard();
 
@@ -82,6 +89,19 @@ int instruction()
 
 }
 
+/*int exit()
+{
+	int exit = 8;
+	if (move1 == exit)
+	{
+		return menu();
+	}
+	if (move1 == exit)
+	{
+		return menu();
+	}
+}*/
+
 
 int main()
 {
@@ -118,12 +138,7 @@ int main()
 		else
 			continue;
 	}
-	bool gameEnd = false;
-	bool gameEndc = false;
-	bool player1 = true;
-	bool player2 = false;
-	int move1, check, tie, player2win, player1win;
-	char playagain;
+	
 	player1win = 0;
 	player2win = 0;
 	tie = 0;
@@ -150,13 +165,14 @@ int main()
 
 	while (gameEnd == false)
 	{
-
+		
 		//Player 1
 		if (gameEnd == false && player1 == true)
 		{
 			outputBoard();
 			cout << "\t\t\t\t\t\tPlayer 1\n\t\t\t\t\t\tChoose a Column: ";
 			cin >> move1;
+			
 			while (cin.fail()) {
 				SetConsoleTextAttribute(console, 4);
 				cout << "\t\t\t\t\t\tPlease enter a valid input: ";
@@ -194,7 +210,7 @@ int main()
 							if (row4[i] == 'O')
 							{
 								row4[i] = 'X';
-								player1 = false;
+					A			player1 = false;
 								player2 = true;
 							}
 							else
