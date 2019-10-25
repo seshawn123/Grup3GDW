@@ -210,7 +210,7 @@ int main()
 							if (row4[i] == 'O')
 							{
 								row4[i] = 'X';
-					A			player1 = false;
+								player1 = false;
 								player2 = true;
 							}
 							else
