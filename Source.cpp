@@ -155,10 +155,12 @@ int main()
 		if (gameEnd == false && player1 == true)
 		{
 			outputBoard();
-			cout << "Player 1\nChoose a Column: ";
+			cout << "\t\t\t\t\t\tPlayer 1\n\t\t\t\t\t\tChoose a Column: ";
 			cin >> move1;
 			while (cin.fail()) {
-				cout << "Please enter a valid input: ";
+				SetConsoleTextAttribute(console, 4);
+				cout << "\t\t\t\t\t\tPlease enter a valid input: ";
+				SetConsoleTextAttribute(console, 15);
 				cin.clear();
 				cin.ignore(256, '\n');
 				cin >> move1;
@@ -364,11 +366,13 @@ int main()
 		if (gameEnd == false && player2 == true && check != 1)
 		{
 			outputBoard();
-			cout << "Player 2\nChoose a Column: ";
+			cout << "\t\t\t\t\t\tPlayer 2\n\t\t\t\t\t\tChoose a Column: ";
 			if (multiplayer == true) { cin >> move1; }
 			if (multiplayer == false) { move1 = rand() % 7 + 1; }
 			while (cin.fail()) {
-				cout << "Please enter a valid input: ";
+				SetConsoleTextAttribute(console, 4);
+				cout << "\t\t\t\t\t\tPlease enter a valid input: ";
+				SetConsoleTextAttribute(console, 15);
 				cin.clear();
 				cin.ignore(256, '\n');
 				cin >> move1;
@@ -627,8 +631,9 @@ string outputBoard()
 {
 	//Output
 		//Num Col
-	cout << " 1 2 3 4 5 6 7" << endl;
-	cout << "---------------" << endl;
+	cout << "\t\t\t\t\t\t 1 2 3 4 5 6 7" << endl;
+	cout << "\t\t\t\t\t\t---------------" << endl;
+	cout << "\t\t\t\t\t\t";
 	//Row 1
 	for (int i = 0; i < 7; i++)
 	{
@@ -645,7 +650,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 2
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -661,7 +668,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 3
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -677,7 +686,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 4
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -693,7 +704,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 5
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -709,7 +722,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 6
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -725,6 +740,6 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
-	cout << "---------------" << endl;
+	cout << "\t\t\t\t\t\t---------------" << endl;
 	return("");
 }
