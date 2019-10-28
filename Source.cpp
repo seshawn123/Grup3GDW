@@ -6,6 +6,13 @@
 bool multiplayer;
 char row1[7], row2[7], row3[7], row4[7], row5[7], row6[7];
 
+bool gameEnd = false;
+bool gameEndc = false;
+bool player1 = true;
+bool player2 = false;
+int move1, check, tie, player2win, player1win;
+char playagain;
+
 using namespace std;
 string outputBoard();
 
@@ -18,38 +25,39 @@ int menu()
 		char response;
 		//cout << "Connect 4\n\n";
 		SetConsoleTextAttribute(console, 4);
-		cout <<"\t\t\t _____                                     _       ___ " << "\n"
-			   "\t\t\t/  __ \\                                   | |     /   |   _" << "\n"
-			   "\t\t\t| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
-			   "\t\t\t| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
-			   "\t\t\t| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
-			   "\t\t\t \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n\n";
+		cout << "\t\t\t _____                                     _       ___ " << "\n"
+			"\t\t\t/  __ \\                                   | |     /   |   _" << "\n"
+			"\t\t\t| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
+			"\t\t\t| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
+			"\t\t\t| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
+			"\t\t\t \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n\n";
 		SetConsoleTextAttribute(console, 15);
 
-		cout << "\t\t\t\tStart\n";
-		cout << "\t\t\t\tInstructions \n";
-		cout << "\t\t\t\tExit\n\n";
-		cout << "\t\t\t\t\tPlease enter your input as seen above\n";
+		cout << "\t\t\tPlease enter\n\t\t\tS to Start\n\t\t\tI for Instructions\n\t\t\tE to exit\n\t\t\t";
 		cin >> response;
 		switch (response)
 		{
 		case 's':
 		case 'S':
 			//cout << "yes";
+			Beep(659, 500);
 			cin.ignore(1000, '\n');
 			system("cls");
 			return 1;
 		case 'i':
 		case 'I':
+			Beep(659, 500);
 			cin.ignore(1000, '\n');
 			system("cls");
 			return 2;
 		case 'e':
 		case 'E':
+			Beep(659, 500);
 			cin.ignore(1000, '\n');
 			system("cls");
 			return 3;
 		default:
+			Beep(659, 500);
 			cout << "Please enter either Start, Instructions, or Exit\n";
 			cin.ignore(1000, '\n');
 			system("cls");
@@ -63,18 +71,28 @@ int instruction()
 	while (1)
 	{
 		char back;
-		cout << "Enter input: Start.\nPlayer 1 and two are prompt in order to input the line corresponding to the row the Player wants to put their piece in.\n";
-		cout << "Input Back to go back to the main menu.\n";
+		SetConsoleTextAttribute(console, 4);
+		cout << "\t\t\t _____                                     _       ___ " << "\n"
+			"\t\t\t/  __ \\                                   | |     /   |   _" << "\n"
+			"\t\t\t| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
+			"\t\t\t| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
+			"\t\t\t| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
+			"\t\t\t \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n\n";
+		SetConsoleTextAttribute(console, 15);
+		cout << "Goal - To connect four of your player specific pieces in a row.\nPlayer 1 has the X piece, and the 2nd player has the N piece.\n\nRules - Each player takes a turn in placing their pieces in the empty slots on the digital board.\nIn order to win, four of a players pieces must connect either horizontally, vertically or diagonally.\nIf the digital board is all filled up, the players have the option in either restarting or take it as a draw.\n\nMovement - Players select the numbered column where they want to place their piece\n\nCan play against the computer or with a friend.\n\n";
+		cout << "Input B to go back to the main menu.\n";
 		cin >> back;
 		switch (back)
 		{
 		case 'b':
 		case 'B':
+			Beep(659, 500);
 			//cout << "yes";
 			cin.ignore(1000, '\n');
 			system("cls");
 			return 1;
 		default:
+			Beep(659, 500);
 			cout << "Please enter Exit\n";
 			cin.ignore(1000, '\n');
 			system("cls");
@@ -84,6 +102,19 @@ int instruction()
 	}
 
 }
+
+/*int exit()
+{
+	int exit = 8;
+	if (move1 == exit)
+	{
+		return menu();
+	}
+	if (move1 == exit)
+	{
+		return menu();
+	}
+}*/
 
 
 int main()
@@ -107,25 +138,37 @@ int main()
 		if (choice == 1)
 		{
 			int x;
-			cout << "Would like to player singleplayer(1) or multiplayer(2) \n";
+			SetConsoleTextAttribute(console, 4);
+			cout << "\t\t\t _____                                     _       ___ " << "\n"
+				"\t\t\t/  __ \\                                   | |     /   |   _" << "\n"
+				"\t\t\t| /  \\/    ___   _ __   _ __    ___   ___ | |_   / /| | _| |_" << "\n"
+				"\t\t\t| |       / _ \\ |  _ \\ |  _ \\  / _ \\ / __|| __| / /_| ||_   _|" << "\n"
+				"\t\t\t| \\__/\\  | (_) || | | || | | ||  __/| (__ | |_  \\___  |  |_|" << "\n"
+				"\t\t\t \\____/   \\___/ |_| |_||_| |_| \\___| \\___| \\__|     |_/" << "\n\n";
+			SetConsoleTextAttribute(console, 15);
+			cout << "\t\t\tSingleplayer(1)\n\t\t\tMultiplayer(2)\n\t\t\t";
 			cin >> x;
+			Beep(659, 500);
 			if (x == 1) {
 				multiplayer = false;
 			}
-			if (x == 2) {
+			else if (x == 2) {
 				multiplayer = true;
 			}
+			while (x > 2) 
+			{
+				cout << "\t\t\t\tPlease enter a valid input: ";
+				cin >> x;
+				Beep(659, 500);
+			}
+
+			system("cls");
 			break;
 		}
 		else
 			continue;
 	}
-	bool gameEnd = false;
-	bool gameEndc = false;
-	bool player1 = true;
-	bool player2 = false;
-	int move1, check, tie, player2win, player1win;
-	char playagain;
+
 	player1win = 0;
 	player2win = 0;
 	tie = 0;
@@ -157,13 +200,18 @@ int main()
 		if (gameEnd == false && player1 == true)
 		{
 			outputBoard();
-			cout << "Player 1\nChoose a Column: ";
+			cout << "\t\t\t\t\t\tPlayer 1\n\t\t\t\t\t\tChoose a Column: ";
 			cin >> move1;
+			Beep(659, 500);
+
 			while (cin.fail()) {
-				cout << "Please enter a valid input: ";
+				SetConsoleTextAttribute(console, 4);
+				cout << "\t\t\t\t\t\tPlease enter a valid input: ";
+				SetConsoleTextAttribute(console, 15);
 				cin.clear();
 				cin.ignore(256, '\n');
 				cin >> move1;
+				Beep(659, 500);
 			}
 
 			for (int i = 0; i <= 7; i++)
@@ -366,14 +414,24 @@ int main()
 		if (gameEnd == false && player2 == true && check != 1)
 		{
 			outputBoard();
-			cout << "Player 2\nChoose a Column: ";
-			if (multiplayer == true) { cin >> move1; }
-			if (multiplayer == false) { move1 = rand() % 7 + 1; }
+			cout << "\t\t\t\t\t\tPlayer 2\n\t\t\t\t\t\tChoose a Column: ";
+			if (multiplayer == true) 
+			{ 
+				cin >> move1; 
+			Beep(659, 500);
+			}
+			if (multiplayer == false) 
+			{
+				move1 = rand() % 7 + 1; 
+			}
 			while (cin.fail()) {
-				cout << "Please enter a valid input: ";
+				SetConsoleTextAttribute(console, 4);
+				cout << "\t\t\t\t\t\tPlease enter a valid input: ";
+				SetConsoleTextAttribute(console, 15);
 				cin.clear();
 				cin.ignore(256, '\n');
 				cin >> move1;
+				Beep(659, 500);
 			}
 
 
@@ -629,8 +687,9 @@ string outputBoard()
 {
 	//Output
 		//Num Col
-	cout << " 1 2 3 4 5 6 7" << endl;
-	cout << "---------------" << endl;
+	cout << "\t\t\t\t\t\t 1 2 3 4 5 6 7" << endl;
+	cout << "\t\t\t\t\t\t---------------" << endl;
+	cout << "\t\t\t\t\t\t";
 	//Row 1
 	for (int i = 0; i < 7; i++)
 	{
@@ -647,7 +706,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 2
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -663,7 +724,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 3
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -679,7 +742,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 4
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -695,7 +760,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 5
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -711,7 +778,9 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
+
 	//Row 6
+	cout << "\t\t\t\t\t\t";
 	for (int i = 0; i < 7; i++)
 	{
 		cout << "|";
@@ -727,6 +796,6 @@ string outputBoard()
 		SetConsoleTextAttribute(console, 15);
 	}
 	cout << "|" << endl;
-	cout << "---------------" << endl;
+	cout << "\t\t\t\t\t\t---------------" << endl;
 	return("");
 }
