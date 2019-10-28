@@ -67,8 +67,8 @@ int instruction()
 	while (1)
 	{
 		char back;
-		cout << "Goal - To connect four of your player specific pieces in a row.\nPlayer 1 has the X piece, and the 2nd player has the N piece.\n\nRules - Each player takes a turn in placing their pieces in the empty slots on the digital board.\nIn order to win, four of a players pieces must connect either horizontally, vertically or diagonally.\nIf the digital board is all filled up, the players have the option in either restarting or take it as a draw.\n\nMovement - Players select the numbered column where they want to place their piece\n\nCan play against the computer or with a friend.";
-		cout << "Input Back to go back to the main menu.\n";
+		cout << "Goal - To connect four of your player specific pieces in a row.\nPlayer 1 has the X piece, and the 2nd player has the N piece.\n\nRules - Each player takes a turn in placing their pieces in the empty slots on the digital board.\nIn order to win, four of a players pieces must connect either horizontally, vertically or diagonally.\nIf the digital board is all filled up, the players have the option in either restarting or take it as a draw.\n\nMovement - Players select the numbered column where they want to place their piece\n\nCan play against the computer or with a friend.\n\n";
+		cout << "Input B to go back to the main menu.\n";
 		cin >> back;
 		switch (back)
 		{
